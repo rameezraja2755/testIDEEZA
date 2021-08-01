@@ -1,4 +1,4 @@
-var lengthOfLongestSubstring = function (fullString) {
+const lengthOfLongestSubstring = function (fullString) {
   let hashTable = {};
   let longestSubstringLength = 0;
   let currentLongestSubstringLength = 0;
