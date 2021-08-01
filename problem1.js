@@ -3,6 +3,7 @@ var lengthOfLongestSubstring = function (fullString) {
   let longestSubstringLength = 0;
   let currentLongestSubstringLength = 0;
   let length = fullString.length;
+  let endPositionOfLongestSubstring = 0;
   for (let i = 0; i < length; i++) {
     if (hashTable[fullString[i]]) {
       currentLongestSubstringLength = 1;
@@ -11,9 +12,21 @@ var lengthOfLongestSubstring = function (fullString) {
       currentLongestSubstringLength++;
     }
     hashTable[fullString[i]] = i + 1;
-    longestSubstringLength = Math.max(longestSubstringLength, currentLongestSubstringLength);
+    if(longestSubstringLength < currentLongestSubstringLength ){
+        longestSubstringLength = currentLongestSubstringLength;
+        endPositionOfLongestSubstring = i;
+    }
   }
-  return longestSubstringLength;
+
+  const subString = fullString.substring(endPositionOfLongestSubstring - longestSubstringLength + 1, endPositionOfLongestSubstring + 1);
+  const res = {
+    longestSubstringLength: longestSubstringLength,
+    subString: subString
+  }
+  return res;
 };
 
-console.log(lengthOfLongestSubstring("abcabcwfgwbb"));
+const result = lengthOfLongestSubstring("abcabcwfgwbb");
+
+console.log( "longest sub string", result.subString )
+console.log( "length of longest sub string", result.longestSubstringLength )
